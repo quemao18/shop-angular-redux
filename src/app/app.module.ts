@@ -1,24 +1,38 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavComponent } from './nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { HomeComponent } from './home/home.component';
+import { MaterialModule } from './material.module';
+
+const routes: Routes = [  
+  { path: '', component: HomeComponent },
+];
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-    ])
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    MaterialModule
+  ],
+  entryComponents: [
+    AppComponent,
+    HomeComponent,
+    NavComponent
   ],
   declarations: [
     AppComponent,
-    TopBarComponent,
-    ProductListComponent
+    HomeComponent,
+    NavComponent
+  ],
+  providers: [
+    
   ],
   bootstrap: [ AppComponent ]
 })
