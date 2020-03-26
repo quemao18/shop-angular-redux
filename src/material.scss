@@ -14,6 +14,7 @@ $candy-app-theme:   mat-light-theme($candy-app-primary, $candy-app-accent);
 // Include the default theme styles.
 @include angular-material-theme($candy-app-theme);
 
+
 // Define an alternate dark theme.
 $dark-primary: mat-palette($mat-blue-grey, A200, A100, A400);
 $dark-accent:  mat-palette($mat-amber, A200, A100, A400);
@@ -33,4 +34,24 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   z-index: 10;
   @include mat-elevation(4);
 }
+
+.footer-primary {
+  color: white;
+  a{
+    color: white;
+  }
+  $candy-app-primary: mat-palette($mat-indigo, A200, A100, A400);
+  background-color: mat-color($candy-app-primary);
+}
+
+.footer-primary-dark {
+  color: black;
+  a{
+    color: black;
+  }
+  $dark-primary: mat-palette($mat-blue-grey, A200, A100, A400);
+  background-color: mat-color($dark-primary);
+}
+
+
   

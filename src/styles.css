@@ -8,10 +8,6 @@ Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at http://angular.io/license
 */
 
-.container {
-  padding: 30px;
-}
-
 html, body, app-root, .app-frame {
   overflow: hidden;
   font-family: Roboto, "Helvetica Neue", sans-serif; 

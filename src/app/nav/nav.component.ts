@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 
 @Component({
@@ -9,6 +9,9 @@ import {MediaMatcher} from '@angular/cdk/layout';
 export class NavComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   dark: boolean ;
+  name: string = "Angular Material Starter"
+  @ViewChild("footer") footer: ElementRef;
+  
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
