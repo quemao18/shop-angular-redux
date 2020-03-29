@@ -45,7 +45,7 @@ const routes: Routes = [
     NavComponent,
     SagComponent,
     DialogOverviewDialogFront,
-    DialogOverviewDialogRear
+    DialogOverviewDialogRear,
   ],
   providers: [
     VersionCheckService,

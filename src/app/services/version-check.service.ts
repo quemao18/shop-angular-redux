@@ -68,33 +68,12 @@ export class VersionCheckService {
     }
 
     openSnackBar() {
-        this._snackBar.openFromComponent(snackBarComponent, {
-          duration: 30 * 60 * 1000 * 6, //3hrs
-        });
+        // this._snackBar.openFromComponent(SnackBarComponent, {
+        //   duration: 30 * 60 * 1000 * 6, //3hrs
+        // });
+        this._snackBar.open('Nueva versión disponible!', 'Actualizar').onAction().subscribe(() => {
+            console.log('The snack-bar action was triggered!');
+            location.reload(true);
+          });
       }
 }
-
-@Component({
-    selector: 'snack-bar-component-example-snack',
-    template: `
-    <span class="example">
-    Nueva Versión disponible <a style="float:right; color:white" href=# mat-button (click)="reload()">Actualizar</a>
-    </span>`
-    ,
-    styles: [`
-      .example {
-        color: white;
-      }
-    `],
-  })
-  export class snackBarComponent {
-
-    constructor(private router: Router){}
-
-    reload(){
-        // location.reload(true);
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.router.navigate(['/']);
-        }); 
-    }
-  }
