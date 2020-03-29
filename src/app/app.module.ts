@@ -12,6 +12,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { SagComponent, DialogOverviewDialogFront, DialogOverviewDialogRear } from './sag/sag.component';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { VersionCheckService } from './services/version-check.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -29,6 +30,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAnalyticsModule,
     BrowserAnimationsModule,
     MaterialModule,
     LayoutModule,
