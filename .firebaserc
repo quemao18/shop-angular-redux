@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "moto-sag"
+  },
+  "targets": {
+    "moto-sag": {
+      "hosting": {
+        "angular.io-example": [
+          "moto-sag"
+        ]
+      }
+    }
+  }
+}

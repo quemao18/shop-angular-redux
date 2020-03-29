@@ -3,11 +3,11 @@ import { FormControl, Validators, FormGroupDirective, NgForm, FormGroup, FormBui
 import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-sag',
+  templateUrl: './sag.component.html',
+  styleUrls: ['./sag.component.css']
 })
-export class HomeComponent implements OnInit {
+export class SagComponent implements OnInit {
 
   sagEIdealMinRear = 30;
   sagEIdealMaxRear = 40;

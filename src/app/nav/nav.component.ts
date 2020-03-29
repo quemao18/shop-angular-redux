@@ -9,8 +9,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 export class NavComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   dark: boolean ;
-  name: string = "Angular Material Starter"
-  @ViewChild("footer") footer: ElementRef;
+  name: string = "Moto SAG Enduro"
   
   private _mobileQueryListener: () => void;
 
