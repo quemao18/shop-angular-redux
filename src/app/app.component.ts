@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,21 @@ import { Meta } from '@angular/platform-browser';
 })
 export class AppComponent implements OnInit  {
 
-  constructor(private metaService: Meta){}
-
+  constructor(private metaService: Meta, private router: Router){}
+  private lastPoppedUrl: string;
+  private yScrollStack: number[] = [];
   ngOnInit(){
     this.metaService.addTags([
       {name: 'keywords', content: 'Moto SAG Enduro'},
       {name: 'description', content: 'Cálculo para el SAG de una moto de Enduro'},
       {name: 'robots', content: 'index, follow'}
     ]);
+
+    //scroll to top
+    this.router.events
+    .subscribe(() => {
+      document.querySelector('.mat-sidenav-content').scrollTop = 0;
+    });
   }
 }
 
