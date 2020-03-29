@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
+import { VersionCheckService } from './services/version-check.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit  {
 
-  constructor(private metaService: Meta, private router: Router){}
+  constructor(private metaService: Meta, private router: Router, private versionCheckService: VersionCheckService){}
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
   ngOnInit(){
@@ -24,6 +26,8 @@ export class AppComponent implements OnInit  {
     .subscribe(() => {
       document.querySelector('.mat-sidenav-content').scrollTop = 0;
     });
+
+    this.versionCheckService.initVersionCheck(environment.versionCheckURL);
   }
 }
 

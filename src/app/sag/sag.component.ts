@@ -1,6 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroupDirective, NgForm, FormGroup, FormBuilder } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+
+export interface DialogDataSagFront {
+  sagEIdealMinFront:number;
+  sagEIdealMaxFront:number;
+  sagDIdealMinFront:number;
+  sagDIdealMaxFront:number;
+}
+
+export interface DialogDataSagRear {
+  sagEIdealMinRear:number;
+  sagEIdealMaxRear:number;
+  sagDIdealMinRear:number;
+  sagDIdealMaxRear:number;
+}
 
 @Component({
   selector: 'app-sag',
@@ -79,7 +94,7 @@ export class SagComponent implements OnInit {
 
   });
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
 
    }
 
@@ -174,6 +189,52 @@ export class SagComponent implements OnInit {
   get fb() { return this.sagFrontForm.get('rbFormControl'); }
   get fc() { return this.sagFrontForm.get('rcFormControl'); }
 
+  openDialogSettingSagFront(): void {
+    const dialogRef = this.dialog.open(DialogOverviewDialogFront, {
+      // width: '400px',
+      // data: {name: this.name, animal: this.animal}
+      data: {
+        sagEIdealMinFront: this.sagEIdealMinFront, 
+        sagEIdealMaxFront: this.sagEIdealMaxFront,
+        sagDIdealMinFront: this.sagDIdealMinFront,
+        sagDIdealMaxFront: this.sagDIdealMaxFront
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      this.sagEIdealMinFront = result.sagEIdealMinFront;
+      this.sagEIdealMaxFront = result.sagEIdealMaxFront;
+      this.sagDIdealMinFront = result.sagDIdealMinFront;
+      this.sagDIdealMaxFront = result.sagDIdealMaxFront;
+      if(this.sagFrontForm.valid)
+        this.getSagFront();
+    });
+  }
+
+  openDialogSettingSagRear(): void {
+    const dialogRef = this.dialog.open(DialogOverviewDialogRear, {
+      // width: '400px',
+      // data: {name: this.name, animal: this.animal}
+      data: {
+        sagEIdealMinRear: this.sagEIdealMinRear, 
+        sagEIdealMaxRear: this.sagEIdealMaxRear,
+        sagDIdealMinRear: this.sagDIdealMinRear,
+        sagDIdealMaxRear: this.sagDIdealMaxRear
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      this.sagEIdealMinRear = result.sagEIdealMinRear;
+      this.sagEIdealMaxRear = result.sagEIdealMaxRear;
+      this.sagDIdealMinRear = result.sagDIdealMinRear;
+      this.sagDIdealMaxRear = result.sagDIdealMaxRear;
+      if(this.sagRearForm.valid)
+        this.getSagRear();
+    });
+  }
+
 }
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -182,4 +243,60 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-sag-setting-front.html',
+  styleUrls: ['./sag.component.css']
+})
+export class DialogOverviewDialogFront {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewDialogFront>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogDataSagFront) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  check(data){
+    if( 
+    data.sagEIdealMinFront == null ||
+    data.sagEIdealMaxFront == null ||
+    data.sagDIdealMinFront == null ||
+    data.sagDIdealMaxFront == null
+    )
+     return true;
+    return false;
+  }
+
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-sag-setting-rear.html',
+  styleUrls: ['./sag.component.css']
+})
+export class DialogOverviewDialogRear {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewDialogRear>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogDataSagRear) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  check(data){
+    if( 
+    data.sagEIdealMinRear == null ||
+    data.sagEIdealMaxRear == null ||
+    data.sagDIdealMinRear == null ||
+    data.sagDIdealMaxRear == null
+    )
+     return true;
+    return false;
+  }
+
 }

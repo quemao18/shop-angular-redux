@@ -9,7 +9,8 @@ export const environment = {
     messagingSenderId: "635626247891",
     appId: "1:635626247891:web:048857f47c8cbc0c13a626",
     measurementId: "G-88JVHB7H9D"  
-  }
+  },
+  versionCheckURL : 'https://moto-sag.web.app/version.json'
 };
 
 

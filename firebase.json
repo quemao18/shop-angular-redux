@@ -9,7 +9,7 @@
       ]
     },
     {
-      "target": "angular.io-example",
+      "target": "moto-sag",
       "public": "dist",
       "ignore": [
         "firebase.json",

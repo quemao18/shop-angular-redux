@@ -9,9 +9,12 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from './material.module';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { SagComponent } from './sag/sag.component';
+import { SagComponent, DialogOverviewDialogFront, DialogOverviewDialogRear } from './sag/sag.component';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { VersionCheckService } from './services/version-check.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 const routes: Routes = [  
   { path: '', component: HomeComponent },
@@ -28,7 +31,8 @@ const routes: Routes = [
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
     MaterialModule,
-    LayoutModule
+    LayoutModule,
+    HttpClientModule
   ],
   entryComponents: [
     AppComponent,
@@ -39,9 +43,12 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     NavComponent,
-    SagComponent
+    SagComponent,
+    DialogOverviewDialogFront,
+    DialogOverviewDialogRear
   ],
   providers: [
+    VersionCheckService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'standard' } },
   ],
   bootstrap: [ AppComponent ]
