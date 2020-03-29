@@ -59,11 +59,11 @@
         </mat-card-content>
         <mat-card-actions>
           <button mat-button mat-raised-button color="primary" (click)="getSagRear()" [disabled]="errorSagERear==null && sagRearForm.invalid" >Calcular</button>
-          <button mat-button (click)="sagRearForm.reset()">Resetear</button>
+          <button mat-button (click)="sagRearForm.reset(); *ngIf="dataSourceRear.sagE=''">Resetear</button>
         </mat-card-actions>
       </mat-card>
     <br>
-      <mat-card class="example-card">
+      <mat-card *ngIf="dataSourceRear.sagE!='' class="example-card">
         <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <mat-card-title>Resultados SAG trasero</mat-card-title>
@@ -154,11 +154,11 @@
         </mat-card-content>
         <mat-card-actions>
           <button mat-button mat-raised-button color="primary" (click)="getSagFront()" [disabled]="errorSagEFront==null && sagFrontForm.invalid" >Calcular</button>
-          <button mat-button (click)="sagFrontForm.reset()">Resetear</button>
+          <button mat-button (click)="sagFrontForm.reset(); *ngIf="dataSourceFront.sagE=''">Resetear</button>
         </mat-card-actions>
       </mat-card>
     <br>
-      <mat-card class="example-card">
+      <mat-card *ngIf="dataSourceFront.sagE!='' class="example-card">
         <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <mat-card-title>Resultados SAG delantero</mat-card-title>
