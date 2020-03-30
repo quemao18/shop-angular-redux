@@ -2,14 +2,18 @@
 <mat-card class="example-card">
     <mat-card-header>
       <!-- <div mat-card-avatar class="example-header-image"></div> -->
-      <mat-card-title>Calculo para SAG</mat-card-title>
-      <mat-card-subtitle>Calcularemos el SAG adecuado para ti</mat-card-subtitle>
+      <mat-card-title>SAG (Shock Absorber Group)</mat-card-title>
+      <mat-card-subtitle>Explicación del SAG</mat-card-subtitle>
     </mat-card-header>
+    <h2 class="mat-h2">¿Qué es el SAG?</h2>
+    <p>Sag es el hundimiento de los amortiguadores montado en la moto, con todo su equipo. 
+      Tenerlo correctamente ajustado garantiza que los amortiguadores no sean ni demasiado rígidos ni demasiado blandos.</p>
+    <h3 class="subheading-2">Lo primero que hay que hacer es tomar las medidas de las imagenes.</h3>
+    
     <img height="70%" mat-card-image src="./assets/img/rear2.png" alt="SAG trasero">
     <img height="70%" mat-card-image src="./assets/img/front2.png" alt="SAG delantero">
     <mat-card-content>
-        <h1>¿Cómo se hace?</h1>
-        <p>Lo primero que hay que hacer es tomar las medidas de las imagenes.</p>
+       
         <p><strong>En el banco</strong></p> 
         <p>RA => Rear A, Medida trasera con la moto montada en un banco.</p>
         <p>FA => Front A, Medida delantera con la moto montada en un banco.</p>
@@ -21,21 +25,21 @@
         <p><strong>Con piloto</strong></p>
         <p>RC => Rear C, Medida trasera con el piloto montado en la moto, deberia tener todo el equipo.</p>
         <p>FC => Front C, Medida delantera con el piloto montado en la moto, deber&iacute;a tener todo el equipo.</p>
-
+        <p><strong>Cálculo del SAG</strong></p>
         <p> SAG Est&aacute;tico Trasero  RA - RB => normalmente entre 30 - 40 mm</p>
-
         <p> SAG Est&aacute;tico delantero  FA - FB => normalmente entre 30 - 40 mm</p>
-
         <p> SAG Din&aacute;mico Trasero  RA - RC => normalmente entre 100 - 110 mm</p>
-
         <p> SAG Din&aacute;mico delantero  FA - FC => normalmente entre 60 - 70 mm</p>
+        <p><strong>Ejemplo 1</strong></p>
+        <p>RA = 600,  RB = 550,  RC = 480</p><p>SAG Est&aacute;tico => RA - RB = 600-550 = 50mm (aumentar precarga, apretar resorte)</p><p>SAG Din&aacute;mico => RA - RC = 600-480 = 120mm (aumentar precarga, apretar resorte)</p>
+        <p><strong>Ejemplo 2</strong></p>
+        <p>RA = 600,  RB = 580,  RC = 530</p><p>SAG Est&aacute;tico => RA - RB = 600-580 = 20mm (quitar precarga, aflojar resorte)</p><p>SAG Din&aacute;mico => RA - RC = 600-530 = 70mm (quitar precarga, aflojar resorte)</p>
+        <p><strong>Ejemplo 3</strong></p>
+        <p>RA = 600,  RB = 565,  RC = 495</p><p>SAG Est&aacute;tico => RA - RB = 600-565 = 35mm (precarga correcta)</p><p>SAG Din&aacute;mico => RA - RC = 600-495 = 105mm (precarga correcta)</p>
 
-        <p><strong>Ejemplo 1</strong></p><p>RA = 600,  RB = 550,  RC = 480</p><p>SAG Est&aacute;tico => RA - RB = 600-550 = 50mm (aumentar precarga, apretar resorte)</p><p>SAG Din&aacute;mico => RA - RC = 600-480 = 120mm (aumentar precarga, apretar resorte)</p>
-        <p><strong>Ejemplo 2</strong></p><p>RA = 600,  RB = 580,  RC = 530</p><p>SAG Est&aacute;tico => RA - RB = 600-580 = 20mm (quitar precarga, aflojar resorte)</p><p>SAG Din&aacute;mico => RA - RC = 600-530 = 70mm (quitar precarga, aflojar resorte)</p>
-        <p><strong>Ejemplo 3</strong></p><p>RA = 600,  RB = 565,  RC = 495</p><p>SAG Est&aacute;tico => RA - RB = 600-565 = 35mm (precarga correcta)</p><p>SAG Din&aacute;mico => RA - RC = 600-495 = 105mm (precarga correcta)</p>
-        
     </mat-card-content>
     <mat-card-actions>
+      <p style="margin-left: 10px; font-weight: bold;font-size: larger;">Empezar a calcular</p>
       <button mat-button color="accent" routerLink="/sag/front">SAG Delantero</button>
       <button mat-button color="accent" routerLink="/sag/rear">SAG Trasero</button>
     </mat-card-actions>

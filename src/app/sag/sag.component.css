@@ -7,6 +7,12 @@
   margin-right: auto;
   }
 
+  .text-inside-grid {
+    position: absolute;
+    left: 20px;
+    display: inline-block;
+  }
+
   .example-spacer {
     flex: 1 1 auto;
   }

@@ -3,7 +3,7 @@
         <mat-card-header>
           <!-- <div mat-card-avatar class="example-header-image"></div> -->
           <mat-card-title>SAG Trasero</mat-card-title>
-          <mat-card-subtitle>Cálculo del SAG trasero</mat-card-subtitle>
+          <mat-card-subtitle>Cálculo del SAG Trasero</mat-card-subtitle>
           <span class="example-spacer"></span>
           <button mat-icon-button>
             <mat-icon (click)="openDialogSettingSagRear()"  class="example-icon" aria-hidden="false" aria-label="Settings">settings</mat-icon>
@@ -71,29 +71,26 @@
       <mat-card *ngIf="dataSourceRear.sagE!='' && type=='rear'" class="example-card">
         <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
-            <mat-card-title>Resultados SAG trasero</mat-card-title>
+            <mat-card-title>Resultados SAG Trasero</mat-card-title>
             <mat-card-subtitle>Valores obtenidos</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            
-            <table class="example-full-width responsive" cellspacing="0">
-                <tr [style.color]="dataSourceRear.errorE ? 'red': 'green'">
-                    <td>
-                        SAG Estático:
-                    </td>
-                    <td *ngIf="dataSourceRear.sagE!=''">
-                        {{dataSourceRear.sagE}}mm ({{dataSourceRear.msgE}})
-                    </td>
-                </tr>
-                <tr [style.color]="dataSourceRear.errorD ? 'red': 'green'">
-                    <td>
-                        SAG Dinámico:
-                    </td>
-                    <td *ngIf="dataSourceRear.sagD!=''">
-                        {{dataSourceRear.sagD}}mm ({{dataSourceRear.msgD}})
-                    </td>
-                </tr>
-            </table> 
+            <mat-grid-list cols="2" rowHeight="100px">
+                <mat-grid-tile class="tile"
+                [style.background] = "dataSourceRear.errorE ? '#FFCDD2':'#DCEDC8'"
+                [style.color]="dataSourceRear.errorE ? 'red': 'green'">
+                <div class="text-inside-grid">
+                    <b>SAG Estático: {{dataSourceRear.sagE}}mm</b><br>{{dataSourceRear.msgE}} 
+                </div>
+                </mat-grid-tile>
+                <mat-grid-tile 
+                [style.background] = "dataSourceRear.errorD ? '#FFCDD2':'#DCEDC8'"
+                [style.color]="dataSourceRear.errorD ? 'red': 'green'">
+                <div class="text-inside-grid">
+                   <b>SAG Dinámico: {{dataSourceRear.sagD}}mm</b><br>{{dataSourceRear.msgD}}
+                </div>
+                </mat-grid-tile>
+            </mat-grid-list>
           </mat-card-content>
       </mat-card>
     </div>
@@ -104,7 +101,7 @@
         <mat-card-header>
           <!-- <div mat-card-avatar class="example-header-image"></div> -->
           <mat-card-title>SAG Delantero</mat-card-title>
-          <mat-card-subtitle>Cálculo del SAG delantero</mat-card-subtitle>
+          <mat-card-subtitle>Cálculo del SAG Delantero</mat-card-subtitle>
           <span class="example-spacer"></span>
           <button mat-icon-button>
             <mat-icon (click)="openDialogSettingSagFront()" class="example-icon" aria-hidden="false" aria-label="Settings">settings</mat-icon>
@@ -172,31 +169,26 @@
       <mat-card *ngIf="dataSourceFront.sagE!='' && type=='front'" class="example-card">
         <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
-            <mat-card-title>Resultados SAG delantero</mat-card-title>
+            <mat-card-title>Resultados SAG Delantero</mat-card-title>
             <mat-card-subtitle>Valores obtenidos</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            
-            <table class="example-full-width responsive" cellspacing="0">
-                <tr [style.color]="dataSourceFront.errorE ? 'red': 'green'">
-                    <td>
-                        SAG Estático:
-                    </td>
-                    <td *ngIf="dataSourceFront.sagE!=''">
-                        {{dataSourceFront.sagE}}mm ({{dataSourceFront.msgE}})
-                    </td>
-                </tr>
-                <tr [style.color]="dataSourceFront.errorD ? 'red': 'green'">
-                    <td>
-                        SAG Dinámico:
-                    </td>
-                    <td *ngIf="dataSourceFront.sagD!=''">
-                        {{dataSourceFront.sagD}}mm ({{dataSourceFront.msgD}})
-                    </td>
-                </tr>
-            </table>
-              
-              
+            <mat-grid-list cols="2" rowHeight="100px">
+                <mat-grid-tile class="tile"
+                [style.background] = "dataSourceFront.errorE ? '#FFCDD2':'#DCEDC8'"
+                [style.color]="dataSourceFront.errorE ? 'red': 'green'">
+                <div class="text-inside-grid">
+                    <b>SAG Estático: {{dataSourceFront.sagE}}mm</b><br>{{dataSourceFront.msgE}} 
+                </div>
+                </mat-grid-tile>
+                <mat-grid-tile 
+                [style.background] = "dataSourceFront.errorD ? '#FFCDD2':'#DCEDC8'"
+                [style.color]="dataSourceFront.errorD ? 'red': 'green'">
+                <div class="text-inside-grid">
+                   <b>SAG Dinámico: {{dataSourceFront.sagD}}mm</b><br>{{dataSourceFront.msgD}}
+                </div>
+                </mat-grid-tile>
+            </mat-grid-list>
           </mat-card-content>
       </mat-card>
     </div>
