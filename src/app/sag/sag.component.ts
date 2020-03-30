@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroupDirective, NgForm, FormGroup, FormBuilder } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 export interface DialogDataSagFront {
   sagEIdealMinFront:number;
@@ -24,6 +26,7 @@ export interface DialogDataSagRear {
 })
 export class SagComponent implements OnInit {
 
+  type:string;
   sagEIdealMinRear = 30;
   sagEIdealMaxRear = 40;
   sagDIdealMinRear = 100;
@@ -94,11 +97,17 @@ export class SagComponent implements OnInit {
 
   });
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private route: ActivatedRoute) {
+
 
    }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      console.log(params.get('type')); 
+      this.type = params.get('type');
+    });
+
   }
 
   matcher = new MyErrorStateMatcher();

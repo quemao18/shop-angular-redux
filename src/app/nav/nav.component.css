@@ -6,6 +6,10 @@
   bottom: 0;
   left: 0;
   right: 0;
+  flex: 1; 
+  /* display: block; */
+  overflow: auto;
+
 }
 
 .example-icon {
@@ -38,25 +42,45 @@ h1.example-app-name {
   flex: 1 0 auto;
 }
 
-.footer {
-  /* position: fixed; */
-  bottom: 0;
-  width: 100%;
-  height: 40px;
-  text-align: center;
-  margin: 0px;
-  padding-top: 20px;
-
+.mat-drawer-content {
   position: relative;
+  z-index: 1;
+  display: block;
+  height: 100%;
+  overflow: auto;
 }
 
+.footer {
+  /* position: fixed; */
+  /* bottom: 0; */
+  /* width: 100%; */
+  /* height: 40px; */
+  text-align: center;
+  /* margin: 0px; */
+  /* padding-top: 20px; */
+  /* padding-bottom: 10px; */
+  /* clear: both; */
+  font-size: medium;
+  /* position: relative; */
+}
+
+.footer2 {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 10px;
+}
+
+.footer2 > a{
+  color:blue;
+}
+/* 
 footer{
   display: block;
 
-}
+} */
 
 .container {
-  padding: 30px;
+  padding: 10px;
   /* height: 80%;
   max-height: 80%;
   overflow: auto; */

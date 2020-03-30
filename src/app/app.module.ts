@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 const routes: Routes = [  
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'sag', component: SagComponent },
+  { path: 'sag/:type', component: SagComponent },
 ];
 
 @NgModule({

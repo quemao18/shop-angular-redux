@@ -1,25 +1,24 @@
-<div fxLayout="row"  fxLayoutGap="22px" class="center"  [style.margin-top]="'12px'">
-    <mat-card class="example-card">
+<div fxLayout="row"  fxLayoutGap="22px" class="center"  [style.margin-top]="'22px'">
+    <mat-card *ngIf="type=='rear'" class="example-card">
         <mat-card-header>
           <!-- <div mat-card-avatar class="example-header-image"></div> -->
-          
-
           <mat-card-title>SAG Trasero</mat-card-title>
-          <mat-card-subtitle>Introduce los datos para el cálculo del SAG trasero</mat-card-subtitle>
+          <mat-card-subtitle>Cálculo del SAG trasero</mat-card-subtitle>
           <span class="example-spacer"></span>
           <button mat-icon-button>
             <mat-icon (click)="openDialogSettingSagRear()"  class="example-icon" aria-hidden="false" aria-label="Settings">settings</mat-icon>
           </button>
         </mat-card-header>
-        <img height="70%" mat-card-image src="./assets/img/rear2.png" alt="SAG">
+        <img  mat-card-image src="./assets/img/rear2.png" alt="SAG">
         <mat-card-content>
+            <mat-card-title>Introduce las medidas</mat-card-title>
             <form [formGroup]="sagRearForm" class="example-form">
               <table class="example-full-width responsive" cellspacing="0">
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Medida A</mat-label>
-                            <input matInput formControlName="raFormControl" [errorStateMatcher]="matcher"
+                            <input type="number" matInput formControlName="raFormControl" [errorStateMatcher]="matcher"
                                     placeholder="Ejm. 600">
                             <span matSuffix>mm</span>
                             <mat-hint>Medida montada en el banco!</mat-hint>
@@ -34,7 +33,7 @@
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Medida B</mat-label>
-                            <input matInput formControlName="rbFormControl" [errorStateMatcher]="matcher"
+                            <input type="number" matInput formControlName="rbFormControl" [errorStateMatcher]="matcher"
                                     placeholder="Ejm. 565">
                             <span matSuffix>mm</span>
                             <mat-hint>Medida en el suelo!</mat-hint>
@@ -49,7 +48,7 @@
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Medida C</mat-label>
-                            <input matInput formControlName="rcFormControl" [errorStateMatcher]="matcher"
+                            <input type="number" matInput formControlName="rcFormControl" [errorStateMatcher]="matcher"
                                     placeholder="Ejm. 500">
                             <span matSuffix>mm</span>
                             <mat-hint>Medida con el piloto y su equipo!</mat-hint>
@@ -69,7 +68,7 @@
         </mat-card-actions>
       </mat-card>
     <br>
-      <mat-card *ngIf="dataSourceRear.sagE!=''" class="example-card">
+      <mat-card *ngIf="dataSourceRear.sagE!='' && type=='rear'" class="example-card">
         <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <mat-card-title>Resultados SAG trasero</mat-card-title>
@@ -94,31 +93,33 @@
                         {{dataSourceRear.sagD}}mm ({{dataSourceRear.msgD}})
                     </td>
                 </tr>
-            </table>
-              
-              
+            </table> 
           </mat-card-content>
       </mat-card>
-      <br>
-      <mat-card class="example-card">
+    </div>
+      <!-- SAG DELANTERO -->
+    <div fxLayout="row"  fxLayoutGap="22px" class="center"  [style.margin-top]="'-22px'">
+
+      <mat-card *ngIf="type=='front'" class="example-card">
         <mat-card-header>
           <!-- <div mat-card-avatar class="example-header-image"></div> -->
           <mat-card-title>SAG Delantero</mat-card-title>
-          <mat-card-subtitle>Introduce los datos para el cálculo del SAG delantero</mat-card-subtitle>
+          <mat-card-subtitle>Cálculo del SAG delantero</mat-card-subtitle>
           <span class="example-spacer"></span>
           <button mat-icon-button>
             <mat-icon (click)="openDialogSettingSagFront()" class="example-icon" aria-hidden="false" aria-label="Settings">settings</mat-icon>
           </button>
         </mat-card-header>
-        <img height="70%" mat-card-image src="./assets/img/front2.png" alt="SAG">
+        <img mat-card-image src="./assets/img/front2.png" alt="SAG">
         <mat-card-content>
+            <mat-card-title>Introduce las medidas</mat-card-title>
             <form [formGroup]="sagFrontForm" class="example-form">
               <table class="example-full-width responsive" cellspacing="0">
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Medida A</mat-label>
-                            <input matInput formControlName="raFormControl" [errorStateMatcher]="matcher"
+                            <input type="number" matInput formControlName="raFormControl" [errorStateMatcher]="matcher"
                                     placeholder="Ejm. 600">
                             <span matSuffix>mm</span>
                             <mat-hint>Medida montada en el banco!</mat-hint>
@@ -133,7 +134,7 @@
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Medida B</mat-label>
-                            <input matInput formControlName="rbFormControl" [errorStateMatcher]="matcher"
+                            <input type="number" matInput formControlName="rbFormControl" [errorStateMatcher]="matcher"
                                     placeholder="Ejm. 565">
                             <span matSuffix>mm</span>
                             <mat-hint>Medida en el suelo!</mat-hint>
@@ -148,7 +149,7 @@
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Medida C</mat-label>
-                            <input matInput formControlName="rcFormControl" [errorStateMatcher]="matcher"
+                            <input type="number" matInput formControlName="rcFormControl" [errorStateMatcher]="matcher"
                                     placeholder="Ejm. 500">
                             <span matSuffix>mm</span>
                             <mat-hint>Medida con el piloto y su equipo!</mat-hint>
@@ -168,7 +169,7 @@
         </mat-card-actions>
       </mat-card>
     <br>
-      <mat-card *ngIf="dataSourceFront.sagE!=''" class="example-card">
+      <mat-card *ngIf="dataSourceFront.sagE!='' && type=='front'" class="example-card">
         <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <mat-card-title>Resultados SAG delantero</mat-card-title>
