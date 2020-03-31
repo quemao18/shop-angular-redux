@@ -13,7 +13,9 @@
 </mat-toolbar>
 
 <mat-sidenav-container class="example-sidenav-container">
-    <mat-sidenav opened style="width:180px;padding: 10px; text-align: center;" #snav 
+    <mat-sidenav 
+    [opened]="mobileQuery.matches ? 'false' : 'true'" 
+    style="width:180px;padding: 10px; text-align: center;" #snav 
     [mode]="mobileQuery.matches ? 'over' : 'side'"
     [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
