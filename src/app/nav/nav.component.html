@@ -20,10 +20,10 @@
     [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        <a mat-list-item routerLinkActive="active" routerLink="/home" href="#">Información</a>
+        <a (click)="mobileQuery.matches ? snav.close() : ''"  mat-list-item routerLinkActive="active" routerLink="/home" href="#">Información</a>
         <!-- <a mat-list-item routerLink="/sag" href="#">Calcular SAG</a> -->
-        <a mat-list-item routerLinkActive="active" routerLink="/sag/front" href="#">SAG Delantero</a>
-        <a mat-list-item routerLinkActive="active" routerLink="/sag/rear" href="#">SAG Trasero</a>
+        <a (click)="mobileQuery.matches ? snav.close() : ''" mat-list-item routerLinkActive="active" routerLink="/sag/front" href="#">SAG Delantero</a>
+        <a (click)="mobileQuery.matches ? snav.close() : ''" mat-list-item routerLinkActive="active" routerLink="/sag/rear" href="#">SAG Trasero</a>
         <footer class="footer2 "> 
           By <a target="blanck" href="https://github.com/quemao18">@quemao18</a>
         </footer>

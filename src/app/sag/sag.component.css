@@ -7,9 +7,15 @@
   margin-right: auto;
   }
 
+  .myGridList {
+    height: 100%;
+}
+
   .text-inside-grid {
     position: absolute;
     left: 20px;
+    /* right: 20px; */
+    /* margin: 10px; */
     display: inline-block;
   }
 

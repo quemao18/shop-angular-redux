@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { FormControl, Validators, FormGroupDirective, NgForm, FormGroup, FormBuilder } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute, } from '@angular/router';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 export interface DialogDataSagFront {
   sagEIdealMinFront:number;
@@ -25,6 +25,8 @@ export interface DialogDataSagRear {
   styleUrls: ['./sag.component.css']
 })
 export class SagComponent implements OnInit {
+
+  mobileQuery: MediaQueryList;
 
   type:string;
   sagEIdealMinRear = 30;
@@ -97,10 +99,20 @@ export class SagComponent implements OnInit {
 
   });
 
-  constructor(public dialog: MatDialog, private route: ActivatedRoute) {
+  private _mobileQueryListener: () => void;
 
-
+  constructor(public dialog: MatDialog, private route: ActivatedRoute, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
    }
+
+   public scrollToBottom() {
+     setTimeout(() => {
+      document.querySelector('.mat-sidenav-content').scrollTop = document.querySelector('.mat-sidenav-content').scrollHeight;
+     }, 0);
+    
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -148,7 +160,7 @@ export class SagComponent implements OnInit {
     this.dataSourceRear.msgE = this.errorSagERear;
     this.dataSourceRear.sagD = sagD;
     this.dataSourceRear.msgD = this.errorSagDRear;
-      
+    this.scrollToBottom()
   }
 
   getSagFront(){
@@ -187,9 +199,9 @@ export class SagComponent implements OnInit {
     this.dataSourceFront.msgE = this.errorSagEFront;
     this.dataSourceFront.sagD = sagD;
     this.dataSourceFront.msgD = this.errorSagDFront;
-      
+    this.scrollToBottom();
   }
-
+  
   get ra() { return this.sagRearForm.get('raFormControl'); }
   get rb() { return this.sagRearForm.get('rbFormControl'); }
   get rc() { return this.sagRearForm.get('rcFormControl'); }
