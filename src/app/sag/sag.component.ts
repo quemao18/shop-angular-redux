@@ -1,15 +1,18 @@
-import { Component, OnInit, Inject, ChangeDetectorRef, ElementRef } from '@angular/core';
-import { FormControl, Validators, FormGroupDirective, NgForm, FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
+import { FormControl, Validators, FormGroupDirective, NgForm, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { NavComponent } from '../nav/nav.component';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 export interface DialogDataSagFront {
   sagEIdealMinFront:number;
   sagEIdealMaxFront:number;
   sagDIdealMinFront:number;
   sagDIdealMaxFront:number;
+  dark: boolean;
 }
 
 export interface DialogDataSagRear {
@@ -17,6 +20,7 @@ export interface DialogDataSagRear {
   sagEIdealMaxRear:number;
   sagDIdealMinRear:number;
   sagDIdealMaxRear:number;
+  dark: boolean;
 }
 
 @Component({
@@ -101,7 +105,10 @@ export class SagComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
-  constructor(public dialog: MatDialog, private route: ActivatedRoute, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    public overlayContainer: OverlayContainer,
+    public nav:NavComponent,
+    public dialog: MatDialog, private route: ActivatedRoute, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -119,7 +126,6 @@ export class SagComponent implements OnInit {
       console.log(params.get('type')); 
       this.type = params.get('type');
     });
-
   }
 
   matcher = new MyErrorStateMatcher();
@@ -156,7 +162,7 @@ export class SagComponent implements OnInit {
       this.dataSourceRear.errorD = true;
     }
 
-    this.dataSourceRear.sagE = sagE;
+    this.dataSourceRear.sagE = sagE == 0 ? "0": sagE;
     this.dataSourceRear.msgE = this.errorSagERear;
     this.dataSourceRear.sagD = sagD;
     this.dataSourceRear.msgD = this.errorSagDRear;
@@ -166,7 +172,7 @@ export class SagComponent implements OnInit {
   getSagFront(){
     // console.log(this.sagRearForm.get('sagE').invalid)
     const sagE = this.fa.value-this.fb.value;
-    const sagD = this.fa.value-this.fc.value
+    const sagD = this.fa.value-this.fc.value;
     // this.sagRearForm.get('sagE').setValue(sagE);
     // this.sagRearForm.get('sagD').setValue(sagD);
     if(sagE<this.sagEIdealMinFront){
@@ -194,8 +200,8 @@ export class SagComponent implements OnInit {
       this.errorSagDFront = this.msgMorePre;
       this.dataSourceFront.errorD = true;
     }
-
-    this.dataSourceFront.sagE = sagE;
+    
+    this.dataSourceFront.sagE = sagE == 0 ? "0": sagE;
     this.dataSourceFront.msgE = this.errorSagEFront;
     this.dataSourceFront.sagD = sagD;
     this.dataSourceFront.msgD = this.errorSagDFront;
@@ -210,11 +216,14 @@ export class SagComponent implements OnInit {
   get fb() { return this.sagFrontForm.get('rbFormControl'); }
   get fc() { return this.sagFrontForm.get('rcFormControl'); }
 
-  openDialogSettingSagFront(): void {
+  openDialogSettingSagFront(): void { 
+    
     const dialogRef = this.dialog.open(DialogOverviewDialogFront, {
       // width: '400px',
       // data: {name: this.name, animal: this.animal}
+      panelClass: this.nav.dark ? 'dark': 'default',
       data: {
+        dark : this.nav.dark,
         sagEIdealMinFront: this.sagEIdealMinFront, 
         sagEIdealMaxFront: this.sagEIdealMaxFront,
         sagDIdealMinFront: this.sagDIdealMinFront,
@@ -237,7 +246,9 @@ export class SagComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogOverviewDialogRear, {
       // width: '400px',
       // data: {name: this.name, animal: this.animal}
+      panelClass: this.nav.dark ? 'dark': 'default',
       data: {
+        dark : this.nav.dark,
         sagEIdealMinRear: this.sagEIdealMinRear, 
         sagEIdealMaxRear: this.sagEIdealMaxRear,
         sagDIdealMinRear: this.sagDIdealMinRear,

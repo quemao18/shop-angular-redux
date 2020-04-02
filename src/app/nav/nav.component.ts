@@ -7,8 +7,9 @@ import {MediaMatcher} from '@angular/cdk/layout';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnDestroy {
+
   mobileQuery: MediaQueryList;
-  dark: boolean ;
+  public dark: boolean ;
   name: string = "Moto SAG Enduro"
   
   private _mobileQueryListener: () => void;

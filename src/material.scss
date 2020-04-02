@@ -16,8 +16,8 @@ $candy-app-theme:   mat-light-theme($candy-app-primary, $candy-app-accent);
 
 
 // Define an alternate dark theme.
-$dark-primary: mat-palette($mat-blue-grey, A200, A100, A400);
-$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-primary: mat-palette($mat-grey, 800);
+$dark-accent:  mat-palette($mat-amber);
 $dark-warn:    mat-palette($mat-deep-orange);
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
@@ -27,6 +27,16 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 .dark {
   @include angular-material-theme($dark-theme);
 }
+
+.default {
+  @include angular-material-theme($candy-app-theme);
+}
+
+
+@mixin custom-components-theme($theme) {
+
+  @include dialog-component-theme($theme);
+ }
 
 .elevation4 {
   // Adds a shadow for elevation level 2 with default color and full opacity:

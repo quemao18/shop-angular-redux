@@ -8,7 +8,7 @@
   <span class="example-spacer"></span>
   
   <button mat-icon-button (click)="dark=!dark">
-    <mat-icon class="example-icon" aria-hidden="false" aria-label="Change theme">format_color_fill</mat-icon>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Change theme">{{dark ? 'wb_sunny':'nights_stay'}}</mat-icon>
   </button>
 </mat-toolbar>
 
@@ -25,7 +25,7 @@
         <a (click)="mobileQuery.matches ? snav.close() : ''" mat-list-item routerLinkActive="active" routerLink="/sag/front" href="#">SAG Delantero</a>
         <a (click)="mobileQuery.matches ? snav.close() : ''" mat-list-item routerLinkActive="active" routerLink="/sag/rear" href="#">SAG Trasero</a>
         <footer class="footer2 "> 
-          By <a target="blanck" href="https://github.com/quemao18">@quemao18</a>
+          By <a [style.color]="dark? 'white':''" target="blanck" href="https://github.com/quemao18">@quemao18</a>
         </footer>
         <!-- <a mat-list-item href="#">Link 3</a> -->
       </mat-nav-list>

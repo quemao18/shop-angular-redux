@@ -13,7 +13,7 @@
 }
 
 .example-icon {
-  padding: 0 14px;
+  padding: 0px;
 }
 
 .example-spacer {
@@ -64,7 +64,8 @@ h1.example-app-name {
   /* position: relative; */
 }
 .mat-nav-list a.active {
-  background: lightgray;
+  background: #eeeeee;
+  color: black;
 }
 .footer2 {
   position: absolute;
