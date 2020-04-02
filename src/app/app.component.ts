@@ -12,13 +12,14 @@ import { VersionCheckService } from './services/version-check.service';
 export class AppComponent implements OnInit  {
 
   constructor(private metaService: Meta, private router: Router, private versionCheckService: VersionCheckService){}
-  private lastPoppedUrl: string;
-  private yScrollStack: number[] = [];
+
   ngOnInit(){
     this.metaService.addTags([
-      {name: 'keywords', content: 'Moto SAG Enduro'},
-      {name: 'description', content: 'Cálculo para el SAG de una moto de Enduro'},
-      {name: 'robots', content: 'index, follow'}
+      {name: 'keywords', content: 'Moto, Motocross, Suspensión, SAG, Enduro, KTM, YAMAHA, SUZUKI, KAWASAKI, GASGAS, HONDA, HUSQVARNA, SHERKO, BETA'},
+      {name: 'description', content: 'Cálculo para el SAG de una moto de Enduro/Motocross'},
+      {name: 'robots', content: 'index, follow'},
+      {name: 'author', content: 'Alejandro Toba'},
+
     ]);
 
     //scroll to top
