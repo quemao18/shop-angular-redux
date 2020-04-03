@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormControl, Validators, FormGroupDirective, NgForm, FormGroup, FormBuilder } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -79,7 +80,14 @@ export class HomeComponent implements OnInit {
 
   });
 
-  constructor() {
+  constructor(elementRef: ElementRef, public route: Router) {
+    // const hammertime = new Hammer(elementRef.nativeElement, {});
+    // hammertime.on('panright', (ev) => {
+       
+    // });
+    // hammertime.on('panleft', (ev) => {
+    //     this.route.navigate(['sag/front'])
+    // });
 
    }
 

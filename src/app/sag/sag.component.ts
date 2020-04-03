@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { FormControl, Validators, FormGroupDirective, NgForm, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, } from '@angular/router';
+import { ActivatedRoute, Router, } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { NavComponent } from '../nav/nav.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -106,12 +106,25 @@ export class SagComponent implements OnInit {
   private _mobileQueryListener: () => void;
 
   constructor(
+    elementRef: ElementRef,
+    public routes: Router,
     public overlayContainer: OverlayContainer,
     public nav:NavComponent,
     public dialog: MatDialog, private route: ActivatedRoute, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+      // const hammertime = new Hammer(elementRef.nativeElement, {});
+      // hammertime.on('panright', (ev) => {
+      //   if(this.routes.url == 'sag/rear')
+      //   this.routes.navigate(['sag/front'])
+      //   else
+      //   this.routes.navigate(['/home'])
+
+      // });
+      // hammertime.on('panleft', (ev) => {
+      //     this.routes.navigate(['sag/rear'])
+      // });
    }
 
    public scrollToBottom() {
