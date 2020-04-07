@@ -36,7 +36,7 @@
     "e2e": "ng e2e",
     "deploy": "ng deploy && npm run post-build",
     "post-build": "node ./build/post-build.js",
-    "build-prod": "ng build --configuration=production --outputHashing=all && npm run post-build && firebase deploy --only hosting:moto-sag"
+    "build-fire": "ng build --configuration=production --outputHashing=all && npm run post-build && firebase deploy --only hosting:moto-sag"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.0",
