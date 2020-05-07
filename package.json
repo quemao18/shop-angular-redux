@@ -17,7 +17,7 @@
     "@types/hammerjs": "^2.0.36",
     "angular-in-memory-web-api": "0.9.0",
     "fibers": "^4.0.2",
-    "firebase": "^7.8.0",
+    "firebase": "^7.14.2",
     "hammerjs": "^2.0.8",
     "html-webpack-plugin": "^4.0.1",
     "jasmine-marbles": "0.6.0",
