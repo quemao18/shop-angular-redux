@@ -39,8 +39,8 @@
     "build-fire": "ng build --configuration=production --outputHashing=all && npm run post-build && firebase deploy --only hosting:moto-sag"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.0",
-    "@angular/cli": "~9.1.0",
+    "@angular-devkit/build-angular": "~0.901.4",
+    "@angular/cli": "~9.1.4",
     "@angular/compiler-cli": "~9.1.4",
     "@angular/language-service": "~9.1.4",
     "@types/jasmine": "~2.8.8",
