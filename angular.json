@@ -28,7 +28,14 @@
               "src/styles.css",
               "src/material.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "hammerjs",
+              "firebase/app",
+              "@firebase/app",
+              "@firebase/util",
+              "@firebase/component"
+            ]
           },
           "configurations": {
             "production": {
