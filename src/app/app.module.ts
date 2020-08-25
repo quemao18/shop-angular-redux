@@ -39,7 +39,9 @@ const routes: Routes = [
   entryComponents: [
     AppComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    DialogOverviewDialogFront,
+    DialogOverviewDialogRear
   ],
   declarations: [
     AppComponent,
