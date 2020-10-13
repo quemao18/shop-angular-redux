@@ -1,6 +1,6 @@
 <div class="example-container" [class.dark]="dark" fxLayout="column" fxFlexFill>
 <mat-toolbar color="primary" class="example-toolbar elevation4"> 
-  <button mat-icon-button (click)="snav.toggle()">
+  <button style="margin-top: -5px;" mat-icon-button (click)="snav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
   <h1 class="">{{name}}</h1>
@@ -21,13 +21,12 @@
     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
         <a (click)="mobileQuery.matches ? snav.close() : ''"  mat-list-item routerLinkActive="active" routerLink="/home" href="#">Información</a>
-        <!-- <a mat-list-item routerLink="/sag" href="#">Calcular SAG</a> -->
         <a (click)="mobileQuery.matches ? snav.close() : ''" mat-list-item routerLinkActive="active" routerLink="/sag/front" href="#">SAG Delantero</a>
         <a (click)="mobileQuery.matches ? snav.close() : ''" mat-list-item routerLinkActive="active" routerLink="/sag/rear" href="#">SAG Trasero</a>
         <footer class="footer2 "> 
-          By <a [style.color]="dark? 'white':''" target="blank" href="https://github.com/quemao18">@quemao18</a>
+          <!-- By <a [style.color]="dark? 'white':''" target="blank" href="https://github.com/quemao18">@quemao18</a> -->
+          <a [style.color]="dark? 'white':''" target="blank" href="https://paypal.me/quemao18">Regálame un Café</a>
         </footer>
-        <!-- <a mat-list-item href="#">Link 3</a> -->
       </mat-nav-list>
     </mat-sidenav>
 

@@ -14,14 +14,14 @@ export class NavComponent implements OnDestroy {
   @ViewChild(MatSidenav)
   public snav: MatSidenav;
   public dark: boolean ;
-  name: string = "Moto SAG Enduro"
+  name: string = "Moto SAG"
   
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, elementRef: ElementRef) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
     const hammertime = new Hammer(elementRef.nativeElement, {});
         hammertime.on('panright', (ev) => {
             this.snav.open();
@@ -32,7 +32,7 @@ export class NavComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
 
 

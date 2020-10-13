@@ -15,7 +15,7 @@ export class AppComponent implements OnInit  {
 
   ngOnInit(){
     this.metaService.addTags([
-      {name: 'keywords', content: 'Moto, Motocross, Suspensión, SAG, Enduro, KTM, YAMAHA, SUZUKI, KAWASAKI, GASGAS, HONDA, HUSQVARNA, SHERKO, BETA'},
+      {name: 'keywords', content: 'Moto, Motocross, Suspensión, SAG, Enduro, KTM, YAMAHA, SUZUKI, KAWASAKI, GASGAS, GAS GAS, HONDA, HUSQVARNA, SHERCO, BETA'},
       {name: 'description', content: 'Cálculo para el SAG de una moto de Enduro/Motocross'},
       {name: 'robots', content: 'index, follow'},
       {name: 'author', content: 'Alejandro Toba'},
