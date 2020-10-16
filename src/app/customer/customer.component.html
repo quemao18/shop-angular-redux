@@ -55,8 +55,8 @@
         </p>
         </section>
         <mat-card-actions >
-            <button *ngIf="!new && !showCustomer" mat-button mat-raised-button color="primary" (click)="search()" [disabled]="(email.invalid && !new) || (!formGroup.valid && new)" >Search</button>
-            <button *ngIf="showCheckout && cart" mat-button mat-raised-button color="primary" (click)="checkout(false)" [disabled]="(email.invalid && !new) || (!formGroup.valid && new)" >Checkout</button>
+            <button *ngIf="!new && !showCustomer" mat-button mat-raised-button color="primary" (click)="search()" [disabled]="(email.invalid && !new) || (!formGroup.valid && new) || spinner" >Search</button>
+            <button *ngIf="showCheckout && cart" mat-button mat-raised-button color="primary" (click)="checkout(false)" [disabled]="(email.invalid && !new) || (!formGroup.valid && new) || spinner" >Checkout</button>
             <button *ngIf="!showCheckout && !cart || new" mat-button mat-raised-button color="primary" (click)="checkout(true)" [disabled]="(!formGroup.valid)" >Register</button>
             <button mat-button mat-raised-button color="accent" routerLink="/cart" >Show Cart</button>
         </mat-card-actions>
