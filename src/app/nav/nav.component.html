@@ -3,13 +3,22 @@
   <button style="margin-top: -5px;" mat-icon-button (click)="snav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
+  <img src="/assets/img/shopping-bag.png" alt="avatar" />
   <h1 class="">{{name}}</h1>
 
   <span class="example-spacer"></span>
-  
+
+  <button style="margin-left: -5px;" *ngIf="cart && cart.length > 0"  mat-icon-button  routerLink="/cart">
+  <mat-icon matBadge="5" class="example-icon" >
+    shopping_cart
+  </mat-icon>
+  <span class="badge" *ngIf="cart && cart.length > 0">{{ cart.length }}</span>
+  </button>
+
   <button mat-icon-button (click)="dark=!dark">
     <mat-icon class="example-icon" aria-hidden="false" aria-label="Change theme">{{dark ? 'wb_sunny':'nights_stay'}}</mat-icon>
   </button>
+  
 </mat-toolbar>
 
 <mat-sidenav-container class="example-sidenav-container">
@@ -20,12 +29,11 @@
     [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        <a (click)="mobileQuery.matches ? snav.close() : ''"  mat-list-item routerLinkActive="active" routerLink="/home" href="#">Información</a>
-        <a (click)="mobileQuery.matches ? snav.close() : ''" mat-list-item routerLinkActive="active" routerLink="/sag/front" href="#">SAG Delantero</a>
-        <a (click)="mobileQuery.matches ? snav.close() : ''" mat-list-item routerLinkActive="active" routerLink="/sag/rear" href="#">SAG Trasero</a>
+        <a (click)="mobileQuery.matches ? snav.close() : ''"  mat-list-item routerLinkActive="active" routerLink="/home" href="#">Home</a>
+        <a (click)="mobileQuery.matches ? snav.close() : ''"  mat-list-item routerLinkActive="active" routerLink="/cart" href="#">Cart</a>
+        <a (click)="mobileQuery.matches ? snav.close() : ''"  mat-list-item routerLinkActive="active" routerLink="/customer" href="#">Customer</a>
         <footer class="footer2 "> 
-          <!-- By <a [style.color]="dark? 'white':''" target="blank" href="https://github.com/quemao18">@quemao18</a> -->
-          <a [style.color]="dark? 'white':''" target="blank" href="https://paypal.me/quemao18">Regálame un Café</a>
+          By <a [style.color]="dark? 'white':''" target="blank" href="https://github.com/quemao18">@quemao18</a>
         </footer>
       </mat-nav-list>
     </mat-sidenav>
@@ -37,23 +45,10 @@
       <router-outlet></router-outlet>
     </div>
 
-    <!-- <footer class="footer2 "> 
-      Developed by <a target="blanck" href="https://github.com/quemao18">@quemao18</a>
-    </footer> -->
-
    
   </mat-sidenav-content>
   
 </mat-sidenav-container>
 
-<!-- <mat-toolbar color="primary" style="height: 60px;" >  -->
-  <!-- <footer class="footer footer-primary">
-    <div class="content has-text-centered">
-      <p style="text-align: center;">
-        Developed by <a target="blanck" href="https://github.com/quemao18">@quemao18</a>
-      </p>
-    </div>
-  </footer> -->
-<!-- </mat-toolbar> -->
 
 </div>

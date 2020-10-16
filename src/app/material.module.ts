@@ -10,8 +10,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 const modules = [
   CommonModule,
@@ -25,7 +29,10 @@ const modules = [
   MatGridListModule,
   MatSnackBarModule,
   MatDialogModule,
-  MatFormFieldModule 
+  MatFormFieldModule,
+  MatRadioModule,
+  MatProgressSpinnerModule,
+  MatProgressBarModule
 ];
 
 

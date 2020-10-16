@@ -1,0 +1,45 @@
+<section>
+<h1>Cart</h1>
+<mat-card class="example-card">
+    <table class="table shop-table" *ngIf="cart">
+    <tr>
+        <th class="b-0" align="center">Remove</th>
+        <th class="b-0" align="center">Name</th>
+        <th class="b-0" align="center">Price</th>
+        <th class="b-0" align="center">Quantity</th>
+        <th class="b-0 text-right" align="right">Total Price</th>
+    </tr>
+    <tr *ngFor="let item of cart">
+        <td align="center">
+        <button class="btn btn-primary btn-sm" (click)="removeFromCart(item)">x</button>
+        </td>
+        <td align="center">{{ item.name }}</td>
+        <td align="center">{{ item.price }}</td>
+        <td align="center">
+        <button class="btn btn-primary btn-sm" (click)="addToCart(item, -1)">-</button>
+        {{ item.qty ? item.qty : 1 }}
+        <button class="btn btn-primary btn-sm" (click)="addToCart(item, 1)">+</button>
+        </td>
+        <td class="text-right" align="right">
+            {{ (item.qty * item.price | number:'.2-2') }}
+        </td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td style="font-weight: bold;" colspan="4" align="right">Total: {{ total | number: '.2-2' }}</td>
+    </tr>
+    </table>
+    <mat-card-actions>
+        <button mat-button mat-raised-button color="primary" routerLink="/customer" [disabled] = "cart.length <=0">Checkout</button>
+        <button mat-button routerLink = "/home" >Back To Shopping</button>
+    </mat-card-actions>
+</mat-card>
+</section>
+
+
+<div  [style] = "mobileQuery.matches ? 'left: 80%' : 'left:90%'"  class="float">
+<button routerLink = "/home" mat-fab aria-label="Example icon button with a home icon">
+    <mat-icon>home</mat-icon>
+</button>
+</div>

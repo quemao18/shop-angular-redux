@@ -2,6 +2,10 @@ import {ChangeDetectorRef, Component, OnDestroy, ViewChild, ElementRef} from '@a
 import {MediaMatcher} from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import * as Hammer from 'hammerjs';
+// import { NgRedux } from '@angular-redux/store';
+import { Product } from '../product/product.component';
+import { Store } from '@ngrx/store';
+import InitialState, { selectCart } from '../store/reducer';
 
 @Component({
   selector: 'app-nav',
@@ -14,11 +18,18 @@ export class NavComponent implements OnDestroy {
   @ViewChild(MatSidenav)
   public snav: MatSidenav;
   public dark: boolean ;
-  name: string = "Moto SAG"
+  name: string = "mPos SHOP"
   
   private _mobileQueryListener: () => void;
+  cart: Array<Product>;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, elementRef: ElementRef) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef, 
+    media: MediaMatcher, 
+    elementRef: ElementRef, 
+    private store: Store<{ cart: InitialState }> 
+    // private ngRedux: NgRedux<InitialState>
+    ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addEventListener('change', this._mobileQueryListener);
@@ -29,7 +40,14 @@ export class NavComponent implements OnDestroy {
         hammertime.on('panleft', (ev) => {
             this.snav.close();
         });
+
+    this.store
+    .select(selectCart)
+      .subscribe((items: Array<Product>) => {
+        this.cart = items;
+      });
   }
+
 
   ngOnDestroy(): void {
     this.mobileQuery.removeEventListener('change', this._mobileQueryListener);

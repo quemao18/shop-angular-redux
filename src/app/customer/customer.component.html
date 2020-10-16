@@ -1,0 +1,130 @@
+<h1>Customer</h1>
+<mat-card *ngIf="!orderId || orderId==''" class="example-card">
+    <mat-progress-bar *ngIf="spinner" mode="indeterminate"></mat-progress-bar><br>
+    <form [formGroup]="formGroup" #form class="example-form">
+        <p>
+            <mat-radio-group aria-label="customer">
+                Are you? 
+                <mat-radio-button (click)="new = true; showCustomer = false; showCheckout = false; customerOrders = false;" [checked]="new" value="1">New Customer</mat-radio-button>
+                <mat-radio-button (click)="new = false" [checked]="!new" value="2">Existing Customer</mat-radio-button>
+            </mat-radio-group>
+        </p>
+        <section *ngIf="showCustomer && customer.name!=''">
+            <br>
+                <mat-card-header>
+                  <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                  <mat-card-title>Welcome back, {{ customer.name }}</mat-card-title>
+            
+                </mat-card-header>
+                
+                <mat-card-content>
+                  <p>
+                    ID: {{ customer.id }}<br>
+                    Address: {{ customer.address }}<br>
+                    Email: {{ customer.email }}<br>
+                  </p>
+                  <a routerLink="/customer" (click)="showCustomer = false; orderId = ''; showCheckout = false; customerOrders = false;">Not {{customer.name}}? Lookup again.</a>
+                </mat-card-content>
+        </section>
+        <section *ngIf="new"  >
+        <p>
+            <mat-form-field class="example-full-width">
+                <mat-label>Full name</mat-label>
+                <input formControlName="name" required matInput>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="example-full-width">
+                <mat-label>ID</mat-label>
+                <input formControlName="id" required matInput>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="example-full-width">
+                <mat-label>Address</mat-label>
+                <textarea formControlName="address"  matInput placeholder="Address"></textarea>
+            </mat-form-field>
+        </p>
+        </section>
+        <section *ngIf="!showCustomer">
+        <p>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" type="email" required matInput>
+            </mat-form-field>
+        </p>
+        </section>
+        <mat-card-actions >
+            <button *ngIf="!new && !showCustomer" mat-button mat-raised-button color="primary" (click)="search()" [disabled]="(email.invalid && !new) || (!formGroup.valid && new)" >Search</button>
+            <button *ngIf="showCheckout && cart" mat-button mat-raised-button color="primary" (click)="checkout(false)" [disabled]="(email.invalid && !new) || (!formGroup.valid && new)" >Checkout</button>
+            <button *ngIf="!showCheckout && !cart || new" mat-button mat-raised-button color="primary" (click)="checkout(true)" [disabled]="(!formGroup.valid)" >Register</button>
+            <button mat-button mat-raised-button color="accent" routerLink="/cart" >Show Cart</button>
+        </mat-card-actions>
+    </form>
+</mat-card>
+
+<section *ngIf="orderId &&  orderId !=''">
+    <br>
+    <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Thanks for you Order, {{ customer.name }} </mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content>
+               <h1>Order ID: {{ orderId }}</h1>
+               <table class="table shop-table" >
+                <tr>
+                    <th class="b-0" align="center">Product</th>
+                    <th class="b-0" align="center">Price</th>
+                    <th class="b-0" align="center">Quantity</th>
+                    <th class="b-0 text-right" align="right">Total Price</th>
+                </tr>
+                <tr *ngFor="let item of lastOrder">
+                    <td align="center">{{ item.product.name }}</td>
+                    <td align="center">{{ item.price }}</td>
+                    <td align="center">{{ item.qty }}</td>
+                    <td class="text-right" align="right">
+                        {{ (item.qty * item.price | number:'.2-2') }}
+                    </td>
+                </tr>
+            
+            </table>
+        </mat-card-content>
+    </mat-card>
+</section>
+
+<section *ngIf="customerOrders">
+    <br>
+    <mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>Yours Last Orders </mat-card-title>
+    </mat-card-header>
+        <table class="table shop-table" >
+            <tr>
+                <th class="b-0" align="center">Order ID</th>
+                <th class="b-0" align="center">Product</th>
+                <th class="b-0" align="center">Price</th>
+                <th class="b-0" align="center">Quantity</th>
+                <th class="b-0 text-right" align="right">Total Price</th>
+            </tr>
+            <tr *ngFor="let item of customerOrders">
+                <td align="center">{{ item.id }}</td>
+                <td align="center">{{ item.product.name }}</td>
+                <td align="center">{{ item.price }}</td>
+                <td align="center">{{ item.qty }}</td>
+                <td class="text-right" align="right">
+                    {{ (item.qty * item.price | number:'.2-2') }}
+                </td>
+            </tr>
+        
+        </table>
+    </mat-card>
+    <br>
+</section>
+
+
+<div  [style] = "mobileQuery.matches ? 'left: 80%' : 'left:90%'"  class="float">
+<button routerLink = "/home" mat-fab aria-label="Example icon button with a home icon">
+    <mat-icon>home</mat-icon>
+</button>
+</div>

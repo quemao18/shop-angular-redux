@@ -1,0 +1,24 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title>{{ product.name }}</mat-card-title>
+      <mat-card-subtitle>{{ product.category.name }}</mat-card-subtitle>
+    </mat-card-header>
+    <img [src]="product.image" [alt]="product.name" class="product-image" />
+    <mat-card-content>
+      <p>
+        {{ product.description }}
+      </p>
+      <p style="color: gray; text-align: right;">${{ product.price | number: '.2-2' }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button 
+      (click)="addToCart(product)"
+      *ngIf="!inCart"
+       mat-button>Add</button>
+      <button 
+      (click)="removeFromCart(product)"
+      *ngIf="inCart"
+       mat-button>Remove</button>
+    </mat-card-actions>
+</mat-card>

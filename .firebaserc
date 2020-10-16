@@ -1,14 +1,5 @@
 {
   "projects": {
-    "default": "moto-sag"
-  },
-  "targets": {
-    "moto-sag": {
-      "hosting": {
-        "moto-sag": [
-          "moto-sag"
-        ]
-      }
-    }
+    "prod": "shop-angular-redux"
   }
 }

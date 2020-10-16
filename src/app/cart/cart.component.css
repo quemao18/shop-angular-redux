@@ -1,0 +1,41 @@
+table {
+    width: 100%;
+  }
+
+.example-first-header-row th {
+  border-bottom: none;
+}
+
+.example-second-header-row {
+  font-style: italic;
+}
+
+.example-first-footer-row {
+  font-weight: bold;
+}
+
+.example-second-footer-row td {
+  color: #900000;
+}
+
+.example-card {
+  max-width: 660px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+td {
+  padding-right: 8px;
+}
+
+.float{
+  z-index:5; 
+  position : fixed;
+  display : flex; 
+  align-self : flex-end; 
+  bottom : 5%; 
+}
+
+
+  

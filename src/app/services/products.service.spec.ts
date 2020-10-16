@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { VersionCheckService } from './version-check.service';
+import { ProductsService } from './products.service';
 
-describe('VersionCheckService', () => {
-  let service: VersionCheckService;
+describe('ProductsService', () => {
+  let service: ProductsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(VersionCheckService);
+    service = TestBed.inject(ProductsService);
   });
 
   it('should be created', () => {

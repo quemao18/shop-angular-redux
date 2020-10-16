@@ -9,19 +9,49 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from './material.module';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { SagComponent, DialogOverviewDialogFront, DialogOverviewDialogRear } from './sag/sag.component';
-import { environment } from 'src/environments/environment';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
-import { VersionCheckService } from './services/version-check.service';
 import { HttpClientModule } from '@angular/common/http';
+
+import { Product, ProductComponent } from './product/product.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { CartComponent } from './cart/cart.component';
+import { OrderByPipe, PipesPipe } from './pipes.pipe';
+import { NgxPaginationModule } from 'ngx-pagination'; 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { ShopEffects } from './store/effects';
+import { ActionReducerMap, StoreModule} from '@ngrx/store';
+import InitialState, { reducer } from './store/reducer';
+import { ActionReducer, MetaReducer } from '@ngrx/store';
+import { localStorageSync } from 'ngrx-store-localstorage';
+import { CustomerComponent } from './customer/customer.component';
+
 
 
 const routes: Routes = [  
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'sag/:type', component: SagComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'customer', component: CustomerComponent },
 ];
+// console.log all actions
+export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
+  return function(state, action) {
+    console.log('state', state);
+    console.log('action', action);
+ 
+    return reducer(state, action);
+  };
+}
+
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync({keys: ['cart', 'items']})(reducer);
+}
+
+const reducers: ActionReducerMap<InitialState> = {cart:Array, items:Array};
+
+export const metaReducers: MetaReducer<any>[] = [debug, localStorageSyncReducer];
+
 
 @NgModule({
   imports: [
@@ -30,30 +60,37 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAnalyticsModule,
     BrowserAnimationsModule,
     MaterialModule,
     LayoutModule,
-    HttpClientModule
+    HttpClientModule, 
+    // NgReduxModule, 
+    NgxPaginationModule,
+    StoreModule.forRoot({reducer}, {
+      metaReducers,
+    }),
+    StoreModule.forFeature('items', reducer, ),
+    StoreModule.forFeature('cart', reducer,),
+    EffectsModule.forRoot([ShopEffects])
   ],
   entryComponents: [
     AppComponent,
     HomeComponent,
     NavComponent,
-    DialogOverviewDialogFront,
-    DialogOverviewDialogRear
   ],
   declarations: [
     AppComponent,
     HomeComponent,
     NavComponent,
-    SagComponent,
-    DialogOverviewDialogFront,
-    DialogOverviewDialogRear,
+    ProductComponent,
+    ProductListComponent,
+    CartComponent,
+    PipesPipe,
+    OrderByPipe,
+    CustomerComponent,
   ],
   providers: [
-    VersionCheckService,
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'standard' } },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'standard'} },
   ],
   bootstrap: [ AppComponent ]
 })

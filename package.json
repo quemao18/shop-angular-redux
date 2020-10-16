@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "dependencies": {
+    "@angular-redux/store": "^10.0.0",
     "@angular/animations": "10.1.5",
     "@angular/cdk": "^10.2.4",
     "@angular/common": "10.1.5",
@@ -14,6 +15,8 @@
     "@angular/platform-browser": "10.1.5",
     "@angular/platform-browser-dynamic": "10.1.5",
     "@angular/router": "10.1.5",
+    "@ngrx/effects": "^10.0.1",
+    "@ngrx/store": "^10.0.1",
     "angular-in-memory-web-api": "0.11.0",
     "fibers": "^5.0.0",
     "firebase": "^7.23.0",
@@ -21,6 +24,8 @@
     "html-webpack-plugin": "^4.5.0",
     "jasmine-marbles": "0.6.0",
     "minimist": "^1.2.5",
+    "ngrx-store-localstorage": "^10.1.0",
+    "ngx-pagination": "^5.0.0",
     "node-sass": "^4.14.1",
     "rxjs": "6.6.3",
     "tslib": "^2.0.3",
@@ -34,8 +39,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "ng deploy && npm run post-build",
-    "post-build": "node ./build/post-build.js",
-    "build-fire": "ng build --configuration=production --outputHashing=all && npm run post-build && firebase deploy --only hosting:moto-sag"
+    "build-fire": "ng build --configuration=production --outputHashing=all && firebase deploy --only hosting:shop-angular-redux"
   },
   "devDependencies": {
     "@angular-devkit/architect": "^0.1001.6",

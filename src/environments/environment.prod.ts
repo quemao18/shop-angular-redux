@@ -1,16 +1,16 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "AIzaSyBOCX47p8hRaijxzZtAyBa22mvrB8Dd6Pg",
-    authDomain: "moto-sag.firebaseapp.com",
-    databaseURL: "https://moto-sag.firebaseio.com",
-    projectId: "moto-sag",
-    storageBucket: "moto-sag.appspot.com",
-    messagingSenderId: "635626247891",
-    appId: "1:635626247891:web:048857f47c8cbc0c13a626",
-    measurementId: "G-88JVHB7H9D"  
+    apiKey: "AIzaSyCEjMJ38Pih987Z3uayocj6NMGlcDCptag",
+    authDomain: "shop-angular-redux.firebaseapp.com",
+    databaseURL: "https://shop-angular-redux.firebaseio.com",
+    projectId: "shop-angular-redux",
+    storageBucket: "shop-angular-redux.appspot.com",
+    messagingSenderId: "221192370327",
+    appId: "1:221192370327:web:399df6d2f0232ed5d251d2",
+    measurementId: "G-G73X6JJY9W"
   },
-  versionCheckURL : 'https://moto-sag.web.app/version.json'
+  apiUrl: 'https://us-central1-shop-angular-redux.cloudfunctions.net/api'
 };
 
 

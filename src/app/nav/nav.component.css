@@ -90,3 +90,24 @@ footer{
   max-height: 80%;
   overflow: auto; */
 }
+
+
+.badge {
+  height: 20px;
+  width: 20px;
+  font-size: 11px;
+  color: white;
+  background-color: yellowgreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: -10px;
+  border-radius: 50%;
+}
+
+img {
+  width: 30px;
+  margin-right: 5px;
+}

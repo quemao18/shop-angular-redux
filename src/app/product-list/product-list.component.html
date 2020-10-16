@@ -1,0 +1,6 @@
+Order: <a routerLink="/home" (click)="orderBy('product_id', true)">Most Recent</a> | <a routerLink="/home" (click)="orderBy('price', false)">Lowest Price</a> 
+<div class="product-list">
+    <mat-progress-bar *ngIf="spinner" mode="indeterminate"></mat-progress-bar><br>
+    <app-product *ngFor="let product of products | async | orderBy:order:reverse | paginate: { itemsPerPage: 20, currentPage: p }" [product]="product"></app-product>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
