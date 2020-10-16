@@ -19,9 +19,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spinner = true;
     this.store.dispatch(LoadSuccess());
   }
 
   items$: Observable<Array<Product>>;
+  spinner: boolean = false;
 
 }

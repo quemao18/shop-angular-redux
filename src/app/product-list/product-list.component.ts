@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../product/product.component';
 
 @Component({
@@ -10,14 +10,19 @@ export class ProductListComponent implements OnInit {
   constructor() {}
 
   @Input() products: Array<Product>;
+  @Input() spinner: boolean;
+
+
   order: string = 'name';
   reverse: boolean = false;
   p: number = 1;
-  spinner: boolean = true;
 
   ngOnInit() {
-    this.products!=null ? this.spinner = false : this.spinner = true;
+    if(this.products)
+    this.spinner = false;
   }
+
+
 
   orderBy(order: string, reverse: boolean){
     this.order = order;
