@@ -9,7 +9,7 @@ export default class InitialState {
 
 const initializeState = (): InitialState => {
   const cart = getSavedCart();
-  return { items: Array<Product>(), cart: cart, };
+  return { items: Array<Product>(), cart: cart ? cart : Array<Product>(), };
 };
 
 const saveCart = (state:any): void => {
