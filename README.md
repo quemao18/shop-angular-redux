@@ -13,3 +13,6 @@
 # App running on Firebase
 `https://shop-angular-redux.web.app/`
 
+# Database mysql
+`mpos_shop.sql`
+
