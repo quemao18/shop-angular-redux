@@ -1,9 +1,8 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, ElementRef, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
-import { CartComponent } from '../cart/cart.component';
 import { Product } from '../product/product.component';
 import { CustomerService } from '../services/customer.service';
 import { ClearCart } from '../store/actions';
@@ -22,7 +21,6 @@ export class CustomerComponent implements OnInit {
     private store: Store<{cart: InitialState}>,
     changeDetectorRef: ChangeDetectorRef, 
     media: MediaMatcher, 
-    elementRef: ElementRef 
     ) { 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -76,7 +74,7 @@ export class CustomerComponent implements OnInit {
     .subscribe(
       (data: any) => {
         this.customer = data[0];
-        if(data.length == 0){
+        if(!this.customer){
          //create
          this.customerService.createCustomer(this.formGroup.value)
          .subscribe(
@@ -105,14 +103,14 @@ export class CustomerComponent implements OnInit {
           this.showCheckout = true;
           this.new = false;
           if(!newCustomer)
-          this.customerService.createOrder(this.customer.customer_id, this.cart).subscribe(
-            ((data: any)=>{
-              console.log(data)
-              this.orderId = data.id;
-              this.getCustomerOrders(this.customer);
-              this.clearCart();
-            })
-          );
+            this.customerService.createOrder(this.customer.customer_id, this.cart).subscribe(
+              ((data: any)=>{
+                console.log(data)
+                this.orderId = data.id;
+                this.getCustomerOrders(this.customer);
+                this.clearCart();
+              })
+            );
         }
         this.spinner = false;
       }
@@ -144,10 +142,11 @@ export class CustomerComponent implements OnInit {
           console.log('The snack-bar action was triggered!');
           });
           this.showCustomer = false;
-        }
+        }else{
         if(this.cart.length>0)
         this.showCheckout = true;
         this.getCustomerOrders(this.customer);
+        }
         this.spinner = false;
       }
     );
@@ -163,6 +162,5 @@ export class CustomerComponent implements OnInit {
     .subscribe((items: Array<Product>) => {
       this.cart = items;
     });
-    // this.total = this.getTotalCost();
   }
 }

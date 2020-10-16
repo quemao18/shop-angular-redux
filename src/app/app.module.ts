@@ -11,7 +11,7 @@ import { MaterialModule } from './material.module';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 
-import { Product, ProductComponent } from './product/product.component';
+import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { OrderByPipe, PipesPipe } from './pipes.pipe';
@@ -20,13 +20,9 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { ShopEffects } from './store/effects';
-import { ActionReducerMap, StoreModule} from '@ngrx/store';
-import InitialState, { reducer } from './store/reducer';
-import { ActionReducer, MetaReducer } from '@ngrx/store';
-import { localStorageSync } from 'ngrx-store-localstorage';
+import { StoreModule} from '@ngrx/store';
+import  { reducer } from './store/reducer';
 import { CustomerComponent } from './customer/customer.component';
-
-
 
 const routes: Routes = [  
   { path: '', component: HomeComponent },
@@ -34,24 +30,6 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'customer', component: CustomerComponent },
 ];
-// console.log all actions
-export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
-  return function(state, action) {
-    console.log('state', state);
-    console.log('action', action);
- 
-    return reducer(state, action);
-  };
-}
-
-export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({keys: ['cart', 'items']})(reducer);
-}
-
-const reducers: ActionReducerMap<InitialState> = {cart:Array, items:Array};
-
-export const metaReducers: MetaReducer<any>[] = [debug, localStorageSyncReducer];
-
 
 @NgModule({
   imports: [
@@ -63,12 +41,9 @@ export const metaReducers: MetaReducer<any>[] = [debug, localStorageSyncReducer]
     BrowserAnimationsModule,
     MaterialModule,
     LayoutModule,
-    HttpClientModule, 
-    // NgReduxModule, 
+    HttpClientModule,  
     NgxPaginationModule,
-    StoreModule.forRoot({reducer}, {
-      metaReducers,
-    }),
+    StoreModule.forRoot({ shop: reducer },),
     StoreModule.forFeature('items', reducer, ),
     StoreModule.forFeature('cart', reducer,),
     EffectsModule.forRoot([ShopEffects])

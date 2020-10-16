@@ -17,7 +17,7 @@
         <td align="center">{{ item.price }}</td>
         <td align="center">
         <button class="btn btn-primary btn-sm" (click)="addToCart(item, -1)">-</button>
-        {{ item.qty ? item.qty : 1 }}
+        {{ item.qty }}
         <button class="btn btn-primary btn-sm" (click)="addToCart(item, 1)">+</button>
         </td>
         <td class="text-right" align="right">

@@ -31,17 +31,6 @@ export class ShopEffects {
       )
     )
   );
+    
   
-    // @Effect()
-    // loadFruits$ = this.actions$.pipe(
-    // ofType(ActionTypes.LoadItems),
-    // mergeMap(() =>
-    //     this.productsService.getAll().pipe(
-    //     map(products => {
-    //         return { type: ActionTypes.LoadSuccess, payload: products };
-    //     }),
-    //     catchError(() => EMPTY)
-    //     )
-    // )
-    // );
 }

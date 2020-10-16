@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Product } from './product/product.component';
+import { Add } from './store/actions';
 
 
 @Component({
@@ -9,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit  {
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private store: Store<{ items: Array<Product>, cart: Array<Product> }>){}
 
   ngOnInit(){
 
@@ -17,6 +20,12 @@ export class AppComponent implements OnInit  {
     this.router.events
     .subscribe(() => {
       document.querySelector('.mat-sidenav-content').scrollTop = 0;
+    });
+
+    const data = window.localStorage.getItem('cart');
+    const dataParse = JSON.parse(data);
+    dataParse.forEach((item: Product) => {
+        this.store.dispatch(Add({payload: item}));
     });
 
   }

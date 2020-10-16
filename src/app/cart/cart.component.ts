@@ -1,14 +1,8 @@
-// import { NgRedux, NgReduxModule, select } from '@angular-redux/store';
 import { ChangeDetectorRef, Component, ElementRef, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Product } from '../product/product.component';
-// import { AddToCart, ClearCart, RemoveFromCart } from '../store/actions';
-import { CustomerService } from '../services/customer.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Store } from '@ngrx/store';
-import { ClearCart, Remove, Add } from '../store/actions';
+import { Remove, Add } from '../store/actions';
 import InitialState, { selectCart } from '../store/reducer';
 
 
@@ -23,7 +17,7 @@ export class CartComponent implements OnInit {
     private store: Store<{cart: InitialState}>,
     changeDetectorRef: ChangeDetectorRef, 
     media: MediaMatcher, 
-    elementRef: ElementRef, ) {
+    ) {
       this.mobileQuery = media.matchMedia('(max-width: 600px)');
       this._mobileQueryListener = () => changeDetectorRef.detectChanges();
       this.mobileQuery.addEventListener('change', this._mobileQueryListener);
@@ -57,7 +51,6 @@ export class CartComponent implements OnInit {
     this.getCart();
   }
 
-  /** Gets the total cost of all transactions. */
   getTotalCost() {
     return this.cart.map(t => t.price * t.qty).reduce((acc, value) => acc + value, 0);
   }
